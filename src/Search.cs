@@ -26,7 +26,7 @@ namespace search_text
 
 				foreach (PhraseMatch m in matches)
 				{
-					Console.WriteLine("CharOffset: " + m.CharOffset + " - LineOffset" + m.LineOffset + " - Word: " + m.Word);
+					Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
 				}
 
 				lines = fr.GetChunk();

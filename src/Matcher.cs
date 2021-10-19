@@ -17,14 +17,17 @@ namespace search_text
 		{
 			IEnumerable<WordMatch> results = ac.Search(text);
 
+			// Sample in case need to ignore word case
+			// IEnumerable<WordMatch> results = "AbCcab".Contains(CharComparer.OrdinalIgnoreCase, "a", "ab", "c").ToList();
+
 			IList<PhraseMatch> matches = new List<PhraseMatch>();
 
-			int LineNumber = 1;
-			int LastEnterIndex = 0;
+			int LineNumber = 1; // Store line number because AhoCorasick algorith doesn't return it
+			int LastEnterIndex = 0; // Store last carriege return in order to calculate LineOffset
 
 			foreach (WordMatch r in results)
 			{
-				Console.WriteLine("CharOffset: " + r.Index + " - Word: " + r.Word.Replace("\n", "ENTER"));
+				// Console.WriteLine("CharOffset: " + r.Index + " - Word: " + r.Word.Replace("\n", "ENTER"));
 
 				if(r.Word == "\n"){
 					LineNumber++;
@@ -40,13 +43,9 @@ namespace search_text
 					Line = LineNumber,
 					LineOffset = r.Index - LastEnterIndex
 				});
-
 			}
 
-			// var results = "abccab".Contains("a", "ab", "bab", "bc", "bca", "c", "caa").ToList();
-
 			return matches;
-
 		}
 	}
 }

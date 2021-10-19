@@ -45,13 +45,11 @@ namespace search_text
 		public string GetChunk()
 		{
 			int count = 1;
-			// IList<string> chunk = new List<string>();
 			StringBuilder sb = new StringBuilder();
 
 			string line;
 			while ((line = reader.ReadLine()) != null)
 			{
-				// chunk.Add(line);
 				sb.AppendLine(line);
 
 				count++;
