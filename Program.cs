@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,15 +13,15 @@ namespace search_text
 			string fileName = args[0];
 			// fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/full_2020_10_28_com.csv";
 			// fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/text.txt";
-			fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/small_text.txt";
+			// fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/small_text.txt";
 
-			Console.WriteLine("Starting to Search Fast for file: " + fileName);
+			Console.WriteLine("Starting to Search Fast for file: " + fileName);			
 
 			Stopwatch sp = new Stopwatch();
 			sp.Start();
 
-			TextSearching textSearching = new TextSearching(fileName);
-			IDictionary<string, IList<PhraseMatch>> results = textSearching.start();
+			TextSearching textSearching = new TextSearching(fileName, args.Skip(1).ToArray());
+			IDictionary<string, IList<PhraseMatch>> results = textSearching.Start();
 
 			sp.Stop();
 

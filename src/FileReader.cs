@@ -15,7 +15,7 @@ namespace search_text
 
 		public FileReader(string _filePath, int _chunkSize = 1000)
 		{
-			Console.WriteLine("Initializing FileReader", _filePath);
+			Console.WriteLine("Initializing FileReader for file: ", _filePath);
 
 			chunkSize = _chunkSize;
 

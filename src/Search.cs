@@ -5,29 +5,29 @@ namespace search_text
 {
 	class TextSearching
 	{
-		private int CHUNK_SIZE = 10;
+		private int CHUNK_SIZE = 100;
 
 		private FileReader fr;
 		private Matcher matcher;
 
 		private IDictionary<string, IList<PhraseMatch>> results = new Dictionary<string, IList<PhraseMatch>>();
 
-		public TextSearching(string fileName)
+		public TextSearching(string fileName, params string[] words)
 		{
 			Console.WriteLine("Searching: " + fileName);
 
-			matcher = new Matcher("sebastian", "Shir", "Paul", "Boone", "Autism", "Michael", "William", "Richard", "Hello");
+			matcher = new Matcher(words);
 
 			fr = new FileReader(fileName, CHUNK_SIZE);
 		}
 
-		public IDictionary<string, IList<PhraseMatch>> start()
+		public IDictionary<string, IList<PhraseMatch>> Start()
 		{
 			int previousCharCount = 0; // In order to fix chunk details, because the "search" works on independent chunks
 
 			TextChunk chunk = fr.GetChunk();
 
-			Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
+			// Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
 
 			while (chunk.Text.Length > 0)
 			{
@@ -35,11 +35,11 @@ namespace search_text
 
 				AddResults(chunk.ChunkNumber, previousCharCount, matches);
 
-				previousCharCount = chunk.CharsCount;
+				previousCharCount += chunk.CharsCount;
 
 				chunk = fr.GetChunk();
 
-				Console.WriteLine("\n\nText Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
+				// Console.WriteLine("\n\nText Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
 			}
 
             return results;
@@ -54,7 +54,7 @@ namespace search_text
 
                 AddOrUpdateResults(m);
 
-				Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
+				// Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
 			}
 		}
 
