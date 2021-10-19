@@ -11,6 +11,8 @@ namespace search_text
 
 		private int chunkSize;
 
+		private int chunkNumber = 0;
+
 		public FileReader(string _filePath, int _chunkSize = 1000)
 		{
 			Console.WriteLine("Initializing FileReader", _filePath);
@@ -42,25 +44,26 @@ namespace search_text
 			reader.Dispose();
 		}
 
-		public string GetChunk()
+		public TextChunk GetChunk()
 		{
-			int count = 1;
 			StringBuilder sb = new StringBuilder();
 
-			string line;
+			string line = "";
+			int lineCounter = 1;
+
 			while ((line = reader.ReadLine()) != null)
 			{
 				sb.AppendLine(line);
 
-				count++;
+				lineCounter++;
 
-				if (count > chunkSize)
+				if (lineCounter > chunkSize)
 				{
 					break;
 				}
-			}		
+			}
 
-			return sb.ToString();
+			return new TextChunk(sb.ToString(), chunkNumber++, lineCounter);
 		}
 	}
 }

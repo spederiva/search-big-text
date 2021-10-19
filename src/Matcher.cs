@@ -10,7 +10,7 @@ namespace search_text
 		AhoCorasick ac;
 
 		public Matcher(params string[] words)
-		{			
+		{
 			// Added carriege return in order to calculate lines
 			var newWords = words.Append("\n");
 
@@ -26,8 +26,8 @@ namespace search_text
 
 			IList<PhraseMatch> matches = new List<PhraseMatch>();
 
-			int LineNumber = 1; // Store line number because AhoCorasick algorith doesn't return it
-			int LastEnterIndex = 0; // Store last carriege return in order to calculate LineOffset
+			int lineNumber = 1; // Store line number because AhoCorasick algorith doesn't return it
+			int lastEnterIndex = 0; // Store last carriege return in order to calculate LineOffset
 
 			foreach (WordMatch r in results)
 			{
@@ -35,19 +35,14 @@ namespace search_text
 
 				if (r.Word == "\n")
 				{
-					LineNumber++;
-					LastEnterIndex = r.Index;
+					lineNumber++;
+					lastEnterIndex = r.Index;
 
 					continue;
 				}
 
-				matches.Add(new PhraseMatch()
-				{
-					Word = r.Word,
-					CharOffset = r.Index,
-					Line = LineNumber,
-					LineOffset = r.Index - LastEnterIndex
-				});
+				// Make sure the word fully matches exactly the text and not only part of it. Check for stop words!
+				matches.Add(new PhraseMatch(r.Word, r.Index, lineNumber, r.Index - lastEnterIndex));
 			}
 
 			return matches;

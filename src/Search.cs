@@ -13,24 +13,32 @@ namespace search_text
 			Console.WriteLine("Searching: " + fileName);
 
 			matcher = new Matcher("sebastian", "Shir", "Paul", "Boone", "Autism");
+
 			fr = new FileReader(fileName, 100);
 		}
 
 		public void start()
 		{
-			string lines = fr.GetChunk();
+			TextChunk chunk = fr.GetChunk();
 
-			while (lines.Length > 0)
+			Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
+
+			while (chunk.Text.Length > 0)
 			{
-				IList<PhraseMatch> matches = matcher.Search(lines);
+				IList<PhraseMatch> matches = matcher.Search(chunk.Text);
 
 				foreach (PhraseMatch m in matches)
 				{
 					Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
 				}
 
-				lines = fr.GetChunk();
+				chunk = fr.GetChunk();
+
+			Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
 			}
 		}
+
+
+
 	}
 }
