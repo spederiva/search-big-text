@@ -16,9 +16,9 @@ namespace search_text
 
 		public void start()
 		{			
-            IEnumerable<string> lines = fr.GetChunk();
+            IList<string> lines = fr.GetChunk();
 
-            while(lines != null){
+            while(lines.Count > 0){
                 foreach(string line in lines){
                     Console.WriteLine(line);
                 }

@@ -7,7 +7,7 @@ namespace search_text
 {
 	class FileReader
 	{
-		private IEnumerable<string> lines;
+		private StreamReader reader;
 
 		private int chunkSize;
 
@@ -24,7 +24,7 @@ namespace search_text
 		{
 			try
 			{
-				lines = File.ReadLines(filePath, Encoding.UTF8);
+				reader = new StreamReader(filePath);
 			}
 			catch (FileNotFoundException ioEx)
 			{
@@ -34,12 +34,21 @@ namespace search_text
 			}
 		}
 
-		public IEnumerable<string> GetChunk()
+		private void Close()
+		{
+			// Close and ensure is release the memory calling "Dispose"
+
+			reader.Close();
+			reader.Dispose();
+		}
+
+		public IList<string> GetChunk()
 		{
 			int count = 1;
 			IList<string> chunk = new List<string>();
 
-			foreach (string line in lines)
+			string line;
+			while ((line = reader.ReadLine()) != null)
 			{
 				chunk.Add(line);
 
@@ -49,7 +58,7 @@ namespace search_text
 				{
 					break;
 				}
-			}
+			}		
 
 			return chunk;
 		}
