@@ -25,34 +25,30 @@ namespace search_text
 		{
 			int previousCharCount = 0; // In order to fix chunk details, because the "search" works on independent chunks
 
-			TextChunk chunk = fr.GetChunk();
+			Nullable<TextChunk> chunk;
 
-			// Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
-
-			while (chunk.Text.Length > 0)
+			while ((chunk = fr.GetChunk()).HasValue)
 			{
-				IList<PhraseMatch> matches = matcher.Search(chunk.Text);
-
-				AddResults(chunk.ChunkNumber, previousCharCount, matches);
-
-				previousCharCount += chunk.CharsCount;
-
-				chunk = fr.GetChunk();
-
 				// Console.WriteLine("\n\nText Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
+
+				IList<PhraseMatch> matches = matcher.Search(chunk.Value.Text);
+
+				AddResults(chunk.Value.ChunkNumber, previousCharCount, matches);
+
+				previousCharCount += chunk.Value.CharsCount;
 			}
 
-            return results;
+			return results;
 		}
 
 		private void AddResults(int chunk, int previousCharCount, IList<PhraseMatch> matches)
 		{
 			foreach (PhraseMatch m in matches)
 			{
-                // Fix values, calculating the chunks
+				// Fix values, calculating the chunks
 				m.UpdateFields(m.CharOffset + previousCharCount, m.Line + (chunk * CHUNK_SIZE));
 
-                AddOrUpdateResults(m);
+				AddOrUpdateResults(m);
 
 				// Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
 			}
@@ -65,7 +61,7 @@ namespace search_text
 				results.Add(match.Word, new List<PhraseMatch>());
 			}
 
-            results[match.Word].Add(match);
+			results[match.Word].Add(match);
 		}
 	}
 }

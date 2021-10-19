@@ -44,7 +44,7 @@ namespace search_text
 			reader.Dispose();
 		}
 
-		public TextChunk GetChunk()
+		public TextChunk? GetChunk()
 		{
 			StringBuilder sb = new StringBuilder();
 
@@ -63,7 +63,12 @@ namespace search_text
 				}
 			}
 
-			// TODO: Call dispose!
+			// If no more text, dispose and return null
+			if(sb.Length == 0){
+				Close();
+
+				return null;
+			}
 
 			return new TextChunk(sb.ToString(), chunkNumber++, lineCounter - 1);
 		}
