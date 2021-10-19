@@ -10,9 +10,9 @@ namespace search_text
 
             Console.WriteLine("Hello World!" + myname);
 
-            FileReader fr = new FileReader("/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/full_2020_10_28_com.csv");
+            FileReader fr = new FileReader("/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/full_2020_10_28_com.csv", 100);
 
-            var bytes = fr.Read();
+            var bytes = fr.GetChunk();
 
             Console.WriteLine("Bytes: " + bytes.ToString());
         }

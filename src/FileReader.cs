@@ -34,28 +34,6 @@ namespace search_text
 			}
 		}
 
-		public IEnumerable<string> Read()
-		{
-			try
-			{
-				IEnumerable<string> lines = File.ReadLines(filePath, Encoding.UTF8);
-
-				int count = 0;
-				foreach (string line in lines)
-				{
-					count++;
-				}
-
-				Console.WriteLine("Lines Total: " + count);
-			}
-			catch (FileNotFoundException ioEx)
-			{
-				Console.WriteLine("Error reading the file. " + ioEx.Message);
-
-				throw new Exception("Error reading the file");
-			}
-		}
-		
 		public IEnumerable<string> GetChunk()
 		{
 			int count = 1;
