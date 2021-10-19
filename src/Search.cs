@@ -12,7 +12,7 @@ namespace search_text
 		{
 			Console.WriteLine("Searching: " + fileName);
 
-			matcher = new Matcher();
+			matcher = new Matcher("sebastian", "Shir", "Paul", "Boone", "Autism");
 			fr = new FileReader(fileName, 100);
 		}
 

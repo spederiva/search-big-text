@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Ganss.Text;
+using System.Linq;
 
 namespace search_text
 {
@@ -9,8 +10,11 @@ namespace search_text
 		AhoCorasick ac;
 
 		public Matcher(params string[] words)
-		{
-			ac = new AhoCorasick("sebastian", "Shir", "Paul", "\n");
+		{			
+			// Added carriege return in order to calculate lines
+			var newWords = words.Append("\n");
+
+			ac = new AhoCorasick(newWords);
 		}
 
 		public IList<PhraseMatch> Search(string text)
@@ -29,7 +33,8 @@ namespace search_text
 			{
 				// Console.WriteLine("CharOffset: " + r.Index + " - Word: " + r.Word.Replace("\n", "ENTER"));
 
-				if(r.Word == "\n"){
+				if (r.Word == "\n")
+				{
 					LineNumber++;
 					LastEnterIndex = r.Index;
 
