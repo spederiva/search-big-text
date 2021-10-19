@@ -5,26 +5,33 @@ namespace search_text
 {
 	class TextSearching
 	{
-        FileReader fr;
+		FileReader fr;
+		Matcher matcher;
 
 		public TextSearching(string fileName)
 		{
 			Console.WriteLine("Searching: " + fileName);
 
+			matcher = new Matcher();
 			fr = new FileReader(fileName, 100);
 		}
 
 		public void start()
-		{			
-            IList<string> lines = fr.GetChunk();
+		{
+			string lines = fr.GetChunk();
 
-            while(lines.Count > 0){
-                foreach(string line in lines){
-                    Console.WriteLine(line);
-                }
+			while (lines.Length > 0)
+			{
+				matcher.Search(lines);
 
-                lines = fr.GetChunk();
-            }            			
+				// foreach (string line in lines)
+				// {
+					// Console.WriteLine(line);
+
+				// }
+
+				lines = fr.GetChunk();
+			}
 		}
 	}
 }
