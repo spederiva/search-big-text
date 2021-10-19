@@ -1,0 +1,15 @@
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/search-text.deps.json
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/search-text.runtimeconfig.json
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/search-text.runtimeconfig.dev.json
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/search-text.dll
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/ref/search-text.dll
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/bin/Debug/net5.0/search-text.pdb
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.csproj.AssemblyReference.cache
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.AssemblyInfoInputs.cache
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.AssemblyInfo.cs
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.csproj.CoreCompileInputs.cache
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.dll
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/ref/search-text.dll
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.pdb
+/Users/sebastian/Developer/dotnet-core/search-text/search-text/obj/Debug/net5.0/search-text.genruntimeconfig.cache
