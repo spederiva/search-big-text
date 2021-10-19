@@ -15,7 +15,7 @@ namespace search_text
 			Word = word;
 			CharOffset = charOffset;
 			Line = line;
-			LineOffset = lineOffset;
+			LineOffset = lineOffset == 0 ? 1 : lineOffset; // Fix column position
 		}
 
 		public void UpdateFields(int charOffset, int line)

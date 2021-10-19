@@ -14,7 +14,7 @@ namespace search_text
 		{
 			Console.WriteLine("Searching: " + fileName);
 
-			matcher = new Matcher("sebastian", "Shir", "Paul", "Boone", "Autism", "Michael", "William", "Richard");
+			matcher = new Matcher("sebastian", "Shir", "Paul", "Boone", "Autism", "Michael", "William", "Richard", "Hello");
 
 			fr = new FileReader(fileName, CHUNK_SIZE);
 		}
@@ -24,7 +24,6 @@ namespace search_text
             int previousCharCount = 0; // In order to fix chunk details, because the search is done by isolated chunks
 
 			TextChunk chunk = fr.GetChunk();
-            previousCharCount = chunk.CharsCount;
 
 			Console.WriteLine("Text Chunk: " + " - Chunk: " + chunk.ChunkNumber + " - LinesCount: " + chunk.LinesCount + " - CharsCount: " + chunk.CharsCount);
 
@@ -33,6 +32,8 @@ namespace search_text
 				IList<PhraseMatch> matches = matcher.Search(chunk.Text);
 
 				fixPhraseMatchDetails(chunk.ChunkNumber, previousCharCount, matches);
+
+                previousCharCount = chunk.CharsCount;
 
 				chunk = fr.GetChunk();
 
