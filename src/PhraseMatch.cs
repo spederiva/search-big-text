@@ -18,5 +18,11 @@ namespace search_text
 			LineOffset = lineOffset;
 		}
 
+		public void UpdateFields(int charOffset, int line)
+		{
+			CharOffset = charOffset;
+			Line = line;
+		}
+
 	}
 }
