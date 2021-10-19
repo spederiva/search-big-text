@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Text;
 
 namespace search_text
 {
@@ -18,11 +20,32 @@ namespace search_text
 			sp.Start();
 
 			TextSearching textSearching = new TextSearching(fileName);
-			textSearching.start();
+			IDictionary<string, IList<PhraseMatch>> results = textSearching.start();
 
 			sp.Stop();
 
 			Console.WriteLine("Elapsed Time is {0} ms", sp.ElapsedMilliseconds);
+
+			PrintResults(results);
+		}
+
+		private static void PrintResults(IDictionary<string, IList<PhraseMatch>> results)
+		{
+			StringBuilder res = new StringBuilder();
+			foreach (KeyValuePair<string, IList<PhraseMatch>> result in results)
+			{
+				res.Append(result.Key);
+				res.Append(" --> ");
+
+				foreach (PhraseMatch match in result.Value)
+				{
+					res.AppendFormat("[Line: {0}, LineOffset: {1}, CharOffset: {2}]", match.Line, match.LineOffset, match.CharOffset);
+				}
+
+				res.AppendLine("");
+			}
+
+			Console.WriteLine(res.ToString());
 		}
 	}
 }

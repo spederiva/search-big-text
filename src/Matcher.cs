@@ -31,8 +31,6 @@ namespace search_text
 
 			foreach (WordMatch r in results)
 			{
-				// Console.WriteLine("CharOffset: " + r.Index + " - Word: " + r.Word.Replace("\n", "ENTER"));
-
 				if (r.Word == "\n")
 				{
 					lineNumber++;

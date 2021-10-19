@@ -63,6 +63,8 @@ namespace search_text
 				}
 			}
 
+			// TODO: Call dispose!
+
 			return new TextChunk(sb.ToString(), chunkNumber++, lineCounter - 1);
 		}
 	}
