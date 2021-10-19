@@ -22,13 +22,12 @@ namespace search_text
 
 			while (lines.Length > 0)
 			{
-				matcher.Search(lines);
+				IList<PhraseMatch> matches = matcher.Search(lines);
 
-				// foreach (string line in lines)
-				// {
-					// Console.WriteLine(line);
-
-				// }
+				foreach (PhraseMatch m in matches)
+				{
+					Console.WriteLine("CharOffset: " + m.CharOffset + " - LineOffset" + m.LineOffset + " - Word: " + m.Word);
+				}
 
 				lines = fr.GetChunk();
 			}
