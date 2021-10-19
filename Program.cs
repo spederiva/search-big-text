@@ -6,15 +6,17 @@ namespace search_text
     {
         static void Main(string[] args)
         {
-            string myname = args[0];
+            string fileName = args[0];
+            // fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/full_2020_10_28_com.csv";
+            fileName = "/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/text.txt";
 
-            Console.WriteLine("Hello World!" + myname);
+            Console.WriteLine("Starting to Search Fast for file: " + fileName);
 
-            FileReader fr = new FileReader("/Users/sebastian/Developer/dotnet-core/search-text/search-text/assets/full_2020_10_28_com.csv", 100);
+            TextSearching textSearching = new TextSearching(fileName);
 
-            var bytes = fr.GetChunk();
-
-            Console.WriteLine("Bytes: " + bytes.ToString());
+            textSearching.start();
         }
+
+
     }
 }
