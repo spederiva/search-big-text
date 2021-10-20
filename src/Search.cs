@@ -5,7 +5,9 @@ namespace search_text
 {
 	class TextSearching
 	{
-		private int CHUNK_SIZE = 100;
+		private const int MIN_CHUNK_SIZE = 10;
+
+		private int CHUNK_SIZE = 1000;
 
 		private FileReader fr;
 
@@ -15,7 +17,9 @@ namespace search_text
 
 		public TextSearching(string fileName, params string[] words)
 		{
-			Console.WriteLine("Searching: " + fileName);
+			CHUNK_SIZE = GetChunkSizeFromEnvironment() ?? CHUNK_SIZE; // Get CHUNK_SIZE from global environment if set
+
+			Console.WriteLine("Searching: " + fileName + " - Words Lengh: " + words.Length + " - Chunk Size: " + CHUNK_SIZE);
 
 			matcher = new Matcher(words);
 
@@ -55,6 +59,24 @@ namespace search_text
 
 				// Console.WriteLine("CharOffset: " + m.CharOffset + " - Line: " + m.Line + " - LineOffset: " + m.LineOffset + " - Word: " + m.Word);
 			}
+		}
+
+		private int? GetChunkSizeFromEnvironment()
+		{
+			int chunkSize = -1;
+			string envChunkSize = Environment.GetEnvironmentVariable("CHUNK_SIZE");
+
+			if (!int.TryParse(envChunkSize, out chunkSize)) // If parse fails returns null
+			{
+				return null;
+			}
+
+			if (chunkSize < MIN_CHUNK_SIZE) // Validate minimum chunk_size! Too Small chunk size is not recommended
+			{
+				return null;
+			}
+
+			return chunkSize;
 		}
 
 
