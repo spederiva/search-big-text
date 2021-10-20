@@ -9,7 +9,9 @@ The current implementation is case sensitive.
 
 Aho-Corasick
 ------------
-blka bla bla
+Aho–Corasick algorithm is a string searching algorithm. It is a kind of dictionary-matching algorithm that locates elements of a finite set of strings (the "dictionary") within an input text. It matches all strings simultaneously.
+
+https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm
 
 https://github.com/mganss/AhoCorasick
 
