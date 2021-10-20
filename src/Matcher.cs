@@ -39,7 +39,7 @@ namespace search_text
 					continue;
 				}
 
-				// Make sure the word fully matches exactly the text and not only part of it. Check for stop words!
+				// TODO: Make sure the word fully matches exactly the text and not only part of it. Check for stop words!
 				matches.Add(new PhraseMatch(r.Word, r.Index, lineNumber, r.Index - lastEnterIndex));
 			}
 
